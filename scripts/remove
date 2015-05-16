@@ -1,0 +1,9 @@
+#!/bin/bash
+
+app=rss-bridge
+
+domain=$(sudo yunohost app setting rss-bridge domain)
+path=$(sudo yunohost app setting rss-bridge path)
+
+sudo rm -rf /var/www/$path
+sudo rm -f /etc/nginx/conf.d/$domain.d/$app.conf

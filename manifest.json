@@ -1,0 +1,34 @@
+{
+  "name": "Rss-Bridge",
+  "id": "rss-bridge",
+  "description": {
+    "en": "Create RSS feeds",
+    "fr": "Créer des flux RSS"
+  },
+  "maintainer": {
+    "name": "Ackak",
+    "email": "ackak_ynh@ackak.net"
+  },
+  "multi_instance": "false",
+  "arguments": {
+    "install" : [
+    {
+      "name": "domain",
+      "ask": {
+        "en": "Choose a domain for Rss-Bridge",
+        "fr": "Choisissez un domaine pour Rss-Bridge"
+      },
+      "example": "domain.org"
+    },
+    {
+      "name": "path",
+      "ask": {
+        "en": "Choose a path for Rss-Bridge",
+        "fr": "Choississez un chemin pour Rss-Bridge"
+      },
+      "example": "/rss-bridge",
+      "default": "/rss-bridge"
+    }
+    ]
+  }
+}

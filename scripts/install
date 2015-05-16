@@ -1,0 +1,25 @@
+#!/bin/bash
+
+app=rss-bridge
+
+# Retrieve arguments
+domain=$1
+path=$2
+
+# Copy files to the right place
+final_path=/var/www/$path
+sudo mkdir -p $final_path
+sudo cp -r ../sources/* $final_path
+sudo chown -R www-data: $final_path
+
+sed -i "s@__PATHTOCHANGE__@$path@g" ../conf/nginx.conf
+sed -i "s@__WWWPATH__@$final_path@g" ../conf/nginx.conf
+
+sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
+
+sudo yunohost app setting $app domain -v $domain
+sudo yunohost app setting $app path -v $path
+sudo yunohost app setting $app unprotected_uris -v "/"
+
+sudo service nginx reload
+sudo yunohost app ssowatconf
